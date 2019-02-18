@@ -9,36 +9,38 @@
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+      <link rel="stylesheet" href="./css/style.css">
    </head>
       <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-          <a class="navbar-brand" href="#">Cinefa</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="index.php">Films</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Acteurs</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Réalisateurs</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Mon Compte
-                <span class="sr-only">(current)</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="./assets/CINEFA-logo.png" width="120px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.php">Films</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="actors.php">Acteurs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="directors.php">Réalisateurs</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="my-account.php">Mon Compte</a>
+              <span class="sr-only">(current)</span>
+            </li>
+          </ul>
         </div>
-      </nav>
+      </div>
+    </nav>
+
         <header class="jumbotron my-4">
-                <h3 class="display-4">Bienvenue, "customer"</h3>
+                <h3 class="display-3">Bienvenue, "customer"</h3>
                 <p class="lead"> Voici un récapitulatif de votre compte Cinéfa, bonne séance .</p>
                 <a href="#" class="btn btn-primary btn-sm">Accueil</a>
                 <a href="#" class="btn btn-primary btn-sm">Accueil</a>

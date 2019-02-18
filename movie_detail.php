@@ -36,10 +36,10 @@
               <span class="sr-only">(current)</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Acteurs</a>
+              <a class="nav-link" href="actors.php">Acteurs</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Réalisateurs</a>
+              <a class="nav-link" href="directors.php">Réalisateurs</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="my-account.php">Mon Compte
@@ -76,9 +76,9 @@ if(isset($_GET['idOfMovie'])){
 
   $select_movie_id = mysqli_query($db_handle, $sqlmoviedetail);
   $select_movie_director = mysqli_query($db_handle, $sqlmoviedirector);
+  $select_movie_while = mysqli_query($db_handle, $sqlmoviedetail);
 
   $movie = mysqli_fetch_assoc($select_movie_id);
-  $director = mysqli_fetch_assoc($select_movie_director);
 
   echo '
   <div class="jumbotron my-4">
@@ -92,13 +92,13 @@ if(isset($_GET['idOfMovie'])){
       echo '<p class="lead">'. $movie['synopsis'].'</p>';
 
   echo '<p class="lead"> Casting : ';
-  while($movie = mysqli_fetch_assoc($select_movie_id)){
-    echo '<pre><a href="actors_detail.php?idOfActor='.$movie['id_actor'].'">'.$movie['act_name'].'</a></pre>';
+  while($movie_while = mysqli_fetch_assoc($select_movie_while)){
+    echo '<pre><a href="actor_detail.php?idOfActor='.$movie_while['id_actor'].'">'.$movie_while['act_name'].'</a></pre>';
   }
   echo '</p>';
   echo '<p class="lead"> Réalisateurs: ';
   while($director = mysqli_fetch_assoc($select_movie_director)){
-    echo '<pre><a href="directors_detail.php?idOfDirector='.$director['id_director'].'">'.$director['dir_name'].'</a></pre>';
+    echo '<pre><a href="director_detail.php?idOfdirector='.$director['id_director'].'">'.$director['dir_name'].'</a></pre>';
   }
   echo '</div>';
 }

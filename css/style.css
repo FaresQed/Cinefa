@@ -1,3 +1,34 @@
-body {
-  padding-top: 5vh;
+@media only screen and (max-width: 768px){
+    .portrait{
+        width : 300vh;
+    }
+}
+
+body{
+    padding-top: 5vh;
+}
+
+ul{
+}
+
+* {
+}
+
+body, html {
+}
+
+.search-bar {
+}
+
+input {
+}
+
+ul#wrapper {
+    list-style: none;
+}
+
+li {
+}
+
+a {
 }
