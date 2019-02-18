@@ -10,10 +10,11 @@
 
   <title>Cinefa</title>
 
+  <link rel="stylesheet" href="./css/style.css">
   <!-- Bootstrap CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Bootstrap / JavaScript -->
+  <!-- Bootstrap /JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -22,9 +23,9 @@
 <body>
 
   <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Cinefa</a>
+        <a class="navbar-brand" href="#"><img src="./assets/CINEFA-logo.png" width="120px"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -58,32 +59,48 @@ require 'connectmysql.php';
 
 if(isset($_GET['idOfMovie'])){
     
-$movie_id = $_GET['idOfMovie'];
+  $movie_id = $_GET['idOfMovie'];
 
-$sqlmovieid  = 'SELECT * FROM `Movies` WHERE id_movie ='. $movie_id;
-$sqlplaysin  = 'SELECT * FROM  `Plays_in` FULL JOIN  Plays_in  ON Directors(id) = Plays_in(`#id_director`)';
-$playsin_result = "SELECT * ROM  `Plays_in` FULL JOIN  Actors ON `Plays_in`.`#id_actor` = Actors.id_actor";
+  $sqlmoviedetail  = 
+ 'SELECT *, Actors.name AS "act_name"
+  FROM `Plays_in` 
+  INNER JOIN `Movies` ON `Plays_in`.`#id_movie` = `Movies`.`id_movie` 
+  INNER JOIN `Actors` ON `Plays_in`.`#id_actor` = `Actors`.`id_actor` 
+  WHERE id_movie ='. $movie_id;
 
-$select_playsin = mysqli_query($db_handle, $playsin_result);
-$select_movie_id = mysqli_query($db_handle, $sqlmovieid);
+  $sqlmoviedirector = 
+ 'SELECT *, Directors.name AS "dir_name" 
+  FROM `Movies` 
+  INNER JOIN `Directors` ON `Movies`.`#id_director` = `Directors`.`id_director`
+  WHERE id_movie ='. $movie_id;
 
+  $select_movie_id = mysqli_query($db_handle, $sqlmoviedetail);
+  $select_movie_director = mysqli_query($db_handle, $sqlmoviedirector);
 
-    while($select_movie_id = mysqli_fetch_assoc($select_movie_id)) {
-            echo '
-        <div class="jumbotron my-4">
-        <center>
-            <h1 class="display-3">'. $select_movie_id['title'].'</h1>
-            <img src="'. $select_movie_id['cover'].'" width="50%" height="80%">
-        </center>
-        </div>
-        <div class="jumbotron my-4">
-            <p class="lead">'. $select_movie_id['release_date'].'</p>
-            <p class="lead">'. $select_movie_id['#id_director'].'</p>
-            <p class="lead">'. $select_playsin['#id_director'].'</p>
-            <p class="lead">'. $select_movie_id['synopsis'].'</p>
-        </div>
-        ';
-    }
+  $movie = mysqli_fetch_assoc($select_movie_id);
+  $director = mysqli_fetch_assoc($select_movie_director);
+
+  echo '
+  <div class="jumbotron my-4">
+    <center>
+      <h1 class="display-3">'. $movie['title'].'</h1>
+      <img src="'. $movie['cover'].'" width="50%" height="80%">
+    </center>
+  </div>
+  <div class="jumbotron my-4">
+      <p class="lead"> Sortie le : '. $movie['release_date'].'</p>';
+      echo '<p class="lead">'. $movie['synopsis'].'</p>';
+
+  echo '<p class="lead"> Casting : ';
+  while($movie = mysqli_fetch_assoc($select_movie_id)){
+    echo '<pre><a href="actors_detail.php?idOfActor='.$movie['id_actor'].'">'.$movie['act_name'].'</a></pre>';
+  }
+  echo '</p>';
+  echo '<p class="lead"> Réalisateurs: ';
+  while($director = mysqli_fetch_assoc($select_movie_director)){
+    echo '<pre><a href="directors_detail.php?idOfDirector='.$director['id_director'].'">'.$director['dir_name'].'</a></pre>';
+  }
+  echo '</div>';
 }
 
 ?>
@@ -91,9 +108,9 @@ $select_movie_id = mysqli_query($db_handle, $sqlmovieid);
   </div>
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-5 bg-light">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Cinefa</p>
+      <p class="m-0 text-center text-dark">Copyright &copy; Cinefa</p>
     </div>
   </footer>
 

@@ -10,6 +10,7 @@
 
   <title>Cinefa</title>
 
+  <link rel="stylesheet" href="./css/style.css">
   <!-- Bootstrap CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,9 +23,9 @@
 <body>
 
   <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Cinefa</a>
+        <a class="navbar-brand" href="#"><img src="./assets/CINEFA-logo.png" width="120px"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -79,14 +80,18 @@ while($movie = mysqli_fetch_assoc($movie_result)) {
 </div>
 ';
 }
+
+mysqli_free_result($movie_result);
+mysqli_close($db_handle);
+
 ?>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-5 bg-light">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Cinefa</p>
+      <p class="m-0 text-center text-black">Copyright &copy; Cinefa</p>
     </div>
   </footer>
 
