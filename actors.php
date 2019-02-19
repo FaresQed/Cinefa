@@ -56,34 +56,7 @@
     </header>
 
     <!-- BODY -->
-    <div class="row text-center">
-
-<?php
-
-require 'connectmysql.php';
-
-while($actor = mysqli_fetch_assoc($actor_result)) {
-echo '
-<div class="col-lg-3 col-md-6 mb-4">
-  <div class="card h-100">
-  <img class="card-img-top portrait" src="' . $actor['portrait'] . '" height="250px" alt="">
-    <div class="card-body">
-    <h4 class="card-title">' . $actor["name"] .'</h4>
-    </div>
-    <div class="card-footer">
-      <a href="actor_detail.php?idOfActor='. $actor['id_actor'] .'" class="btn btn-primary">En savoir plus</a>
-    </div>
-  </div>
-</div>
-';
-}
-
-mysqli_free_result($actor_result);
-mysqli_close($db_handle);
-
-?>
-    </div>
-  </div>
+    <div class="row text-center" id="actors"></div>
 
   <!-- Footer -->
   <footer class="py-5 bg-light">
@@ -95,6 +68,7 @@ mysqli_close($db_handle);
   <!-- Bootstrap / JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/script.js"></script>
 
 </body>
 </html>

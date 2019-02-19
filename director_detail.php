@@ -71,11 +71,7 @@ if(isset($_GET['idOfdirector'])){
   
 
   $sql_director_detail = 'SELECT * FROM Directors WHERE id_director ='. $director_id;
-  $sql_director_movie  = 
- 'SELECT *
-  FROM `Movies` 
-  INNER JOIN `Directors` ON `Movies`.`#id_director` = `Directors`.`id_director` 
-  WHERE id_director ='. $director_id;
+  $sql_director_movie  = 'SELECT *FROM `Movies` INNER JOIN `Directors` ON `Movies`.`#id_director` = `Directors`.`id_director` WHERE id_director ='. $director_id;
 
 
   $select_director_id = mysqli_query($db_handle, $sql_director_detail);
