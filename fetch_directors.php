@@ -11,11 +11,11 @@ if(isset($_POST["query"]))
 	$search_min = mysqli_real_escape_string($connect, $directors_min);
 
 
-	$query = "SELECT * FROM directors WHERE title LIKE '%".$search_maj."%' OR '%".$search_min."%'";
+	$query = "SELECT * FROM Directors WHERE `name` LIKE '%".$search_maj."%' OR '%".$search_min."%'";
 }
 else
 {
-	$query = "SELECT *, DATE_FORMAT(release_date, '%d.%m.%Y') AS date FROM directorss";
+	$query = "SELECT * FROM Directors";
 }
 
 $result = mysqli_query($connect, $query);

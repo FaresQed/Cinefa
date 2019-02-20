@@ -11,11 +11,11 @@ if(isset($_POST["query"]))
 	$search_min = mysqli_real_escape_string($connect, $actor_min);
 
 
-	$query = "SELECT * FROM actors WHERE title LIKE '%".$search_maj."%' OR '%".$search_min."%'";
+	$query = "SELECT * FROM Actors WHERE `name` LIKE '%".$search_maj."%' OR '%".$search_min."%'";
 }
 else
 {
-	$query = "SELECT *, DATE_FORMAT(release_date, '%d.%m.%Y') AS date FROM actors";
+	$query = "SELECT * FROM Actors";
 }
 
 $result = mysqli_query($connect, $query);
@@ -24,20 +24,20 @@ if(mysqli_num_rows($result) > 0)
 {
 	while($actor = mysqli_fetch_array($result))
 	{
-		echo '
+echo '
 <div class="col-lg-3 col-md-6 mb-4">
-<div class="card h-100">
-<img class="card-img-top" src="' . $actor['cover'] . '" height="325vh" alt="">
-	<div class="card-body">
-	<div class="card-title">' . $actor["title"] .'</div>
-	<p class="card-text">Sortie le : '. $actor['release_date'] .'</p>
-	</div>
-	<div class="card-footer">
-	<a href="actor_detail.php?idOfactor='. $actor['id_actor'] .'" class="btn btn-primary">En savoir plus</a>
-	</div>
+  <div class="card h-100">
+  <img class="card-img-top portrait" src="' . $actor['portrait'] . '" height="250px" alt="">
+    <div class="card-body">
+    <h4 class="card-title">' . $actor["name"] .'</h4>
+    </div>
+    <div class="card-footer">
+      <a href="actor_detail.php?idOfActor='. $actor['id_actor'] .'" class="btn btn-primary">En savoir plus</a>
+    </div>
+  </div>
 </div>
-</div>';
-	}
+';
+}
 }
 else
 {

@@ -46,6 +46,9 @@
               </a>
             </li>
           </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" name="search_director" id="search_director" placeholder="Chercher un Réalisateur">
+          </form>
         </div>
       </div>
     </nav>
@@ -56,34 +59,7 @@
     </header>
 
     <!-- BODY -->
-    <div class="row text-center">
-
-<?php
-
-require 'connectmysql.php';
-
-while($director = mysqli_fetch_assoc($director_result)) {
-echo '
-<div class="col-lg-3 col-md-6 mb-4">
-  <div class="card h-100">
-  <img class="card-img-top portrait" src="' . $director['portrait'] . '" height="200px" alt="">
-    <div class="card-body">
-    <h4 class="card-title">' . $director["name"] .'</h4>
-    </div>
-    <div class="card-footer">
-      <a href="director_detail.php?idOfdirector='. $director['id_director'] .'" class="btn btn-primary">En savoir plus</a>
-    </div>
-  </div>
-</div>
-';
-}
-
-mysqli_free_result($director_result);
-mysqli_close($db_handle);
-
-?>
-    </div>
-  </div>
+    <div class="row text-center" id="director"></div>
 
   <!-- Footer -->
   <footer class="py-5 bg-light">
@@ -95,6 +71,8 @@ mysqli_close($db_handle);
   <!-- Bootstrap / JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="vendor/script.js"></script>
 
 </body>
 </html>

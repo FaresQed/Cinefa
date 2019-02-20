@@ -57,8 +57,6 @@ $(document).ready(function(){
 
 ////////////
 
-
-
 		//Director
 	function load_data_directors(query)
 	{
@@ -68,7 +66,7 @@ $(document).ready(function(){
 			data:{query:query},
 			success:function(data)
 			{
-				$('#directors').html(data);
+				$('#director').html(data);
 			}
 		});
 	}
