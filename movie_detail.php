@@ -96,7 +96,7 @@ if(isset($_GET['idOfMovie'])){
     echo '<pre><a href="actor_detail.php?idOfActor='.$movie_while['id_actor'].'">'.$movie_while['act_name'].'</a></pre>';
   }
   echo '</p>';
-  echo '<p class="lead"> Réalisateurs: ';
+  echo '<p class="lead"> Réalisateurs: </p>';
   while($director = mysqli_fetch_assoc($select_movie_director)){
     echo '<pre><a href="director_detail.php?idOfdirector='.$director['id_director'].'">'.$director['dir_name'].'</a></pre>';
   }
@@ -104,6 +104,7 @@ if(isset($_GET['idOfMovie'])){
 }
 echo '<div class="jumbotron my-4">
     <center>
+    <p class="lead"> Bande-annonce :  </p>
       <iframe width="560" height="315" src="'. $movie['bo'].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </center>
   </div>'

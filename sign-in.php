@@ -34,14 +34,6 @@
                   </div>
                </div>
                <div class="form-group">
-                  <div class="input-group">
-                     <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                     </div>
-                     <input class="form-control" placeholder="******" type="password" name='passwordconf'>
-                  </div>
-               </div>
-               <div class="form-group">
                   <button type="submit" class="btn btn-primary btn-block" name="submit"> Se connecter  </button>
                </div>
                <p class="text-center"><a href="#" class="btn">Mot de passe oublié ?</a></p>
@@ -56,11 +48,10 @@
   
   if(isset($_POST['submit'])){
 
-    extract($_POST);
 
-    if(!empty($user_id) && !empty($password) && !empty($passwordconf)){
+    if(!empty($user_id) && !empty($password)){
       include 'connectmysql.php';
-      global $db;
+
 
       
     };

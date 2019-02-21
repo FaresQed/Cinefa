@@ -4,7 +4,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Document</title>
+      <title>Inscription Cinefa</title>
       <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -15,14 +15,37 @@
          <article class="card-body">
             <h4 class="card-title text-center mb-4 mt-1">S'enregistrer</h4>
             <hr>
-            <p class="text-success text-center">Connectez vous à l'aide de vos identifiants</p>
-            <form method="post" action="./my-account.php">
+            <form method="post" action="">
                <div class="form-group">
                   <div class="input-group">
                      <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                      </div>
-                     <input name="user_id" class="form-control" placeholder="Email ou pseudo" type="email">
+                     <input name="user_id" class="form-control" placeholder="Pseudo" type="text">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="input-group">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                     </div>
+                     <input name="mail" class="form-control" placeholder="Email" type="text">
+                  </div>
+               </div>
+               <div class="form-group">
+               <div class="input-group">
+                  <div class="input-group-prepend">
+                     <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+                  </div>
+                  <textarea class="form-control" name="address" placeholder="Adresse"></textarea>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="input-group">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                     </div>
+                     <input name="phone" class="form-control" placeholder="Tél." type="tel">
                   </div>
                </div>
                <div class="form-group">
@@ -54,20 +77,35 @@
       </div> 
       <!--container end.//-->
    </body>
-   <?php
+
+<?php
   
+  require 'connectmysql.php';
+
+
   if(isset($_POST['submit'])){
 
-    extract($_POST);
+   $user_id = $_POST['user_id'];
+   $mail = $_POST['mail'];
+   $address = $_POST['address'];
+   $phone= $_POST['phone'];
+   $password = $_POST['password'];
+   $passwordconf = $_POST['passwordconf'];
 
-    if(!empty($user_id) && !empty($password) && !empty($passwordconf)){
-      include 'connectmysql.php';
-      global $db;
-    };
+   $sqlverify = "SELECT `pseudo`, `mail` FROM  Users ";
+   $select_user_pseudo = mysqli_query($db_handle, $sqlverify);
 
+   $sqlsign_in = "INSERT INTO Users (`pseudo`,`address`, `mail`, `phone`, `password`) VALUES ($user_id, $address, $mail, $phone, $password)";
 
-  }
-  
-  
-  ?>
+   if(!isset($user_id) || !isset($password) || !isset($passwordconf) || (($passwordconf) != ($password)) ){
+      echo "mot de passe ou pseudo invalide";
+    }else if($insert_user_pseudo = mysqli_query($db_handle, $sqlsign_in)){
+         $insert_user_pseudo = mysqli_query($db_handle, $sqlsign_in);
+         echo "ajout avec succés";
+         }
+      }
+
+    
+?>
+
 </html>
