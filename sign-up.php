@@ -21,7 +21,7 @@
                      <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                      </div>
-                     <input name="user_id" class="form-control" placeholder="Pseudo" type="text">
+                     <input name="user_id" class="form-control" placeholder="Pseudo" type="text" required>
                   </div>
                </div>
                <div class="form-group">
@@ -29,7 +29,7 @@
                      <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                      </div>
-                     <input name="mail" class="form-control" placeholder="Email" type="text">
+                     <input name="mail" class="form-control" placeholder="Email" type="text" required>
                   </div>
                </div>
                <div class="form-group">
@@ -37,7 +37,7 @@
                   <div class="input-group-prepend">
                      <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
                   </div>
-                  <textarea class="form-control" name="address" placeholder="Adresse"></textarea>
+                  <textarea class="form-control" name="address" placeholder="Adresse" required></textarea>
                   </div>
                </div>
                <div class="form-group">
@@ -45,7 +45,7 @@
                      <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
                      </div>
-                     <input name="phone" class="form-control" placeholder="Tél." type="tel">
+                     <input name="phone" class="form-control" placeholder="Tél." type="tel" required>
                   </div>
                </div>
                <div class="form-group">
@@ -53,7 +53,7 @@
                      <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                      </div>
-                     <input class="form-control" placeholder="mot de passe" type="password" name='password'>
+                     <input class="form-control" placeholder="mot de passe" type="password" name='password'required>
                   </div>
                </div>
                <div class="form-group">
@@ -61,22 +61,13 @@
                      <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                      </div>
-                     <input class="form-control" placeholder="confirmation de mot de passe" type="password" name='passwordconf'>
+                     <input class="form-control" placeholder="confirmation de mot de passe" type="password" name='passwordconf' required>
                   </div>
                </div>
                <div class="form-group">
                   <button type="submit" class="btn btn-primary btn-block" name="submit"> Se connecter  </button>
                </div>
                <p class="text-center"><a href="#" class="btn">Mot de passe oublié ?</a></p>
-            </form>
-         </article>
-      </div>
-      <!-- card.// -->
-      </aside> <!-- col.// -->
-      </div> <!-- row.// -->
-      </div> 
-      <!--container end.//-->
-   </body>
 
 <?php
   
@@ -92,20 +83,31 @@
    $password = $_POST['password'];
    $passwordconf = $_POST['passwordconf'];
 
-   $sqlverify = "SELECT `pseudo`, `mail` FROM  Users ";
-   $select_user_pseudo = mysqli_query($db_handle, $sqlverify);
+   $sqlsign_in = "INSERT INTO Users (`pseudo`,`address`, `mail`, `phone`, `password`) VALUES ('" . $user_id . "' , '" . $mail . "' , '" . $address . "' , '" . $phone . "' , '" . $password . "')";
 
-   $sqlsign_in = "INSERT INTO Users (`pseudo`,`address`, `mail`, `phone`, `password`) VALUES ($user_id, $address, $mail, $phone, $password)";
-
-   if(!isset($user_id) || !isset($password) || !isset($passwordconf) || (($passwordconf) != ($password)) ){
-      echo "mot de passe ou pseudo invalide";
-    }else if($insert_user_pseudo = mysqli_query($db_handle, $sqlsign_in)){
-         $insert_user_pseudo = mysqli_query($db_handle, $sqlsign_in);
-         echo "ajout avec succés";
+      if(isset($user_id) || isset($mail) || isset($addresse) || isset($phone) || isset($password) || isset($passwordconf)){
+         if(($passwordconf) != ($password)){
+            echo '<p class="text-center danger">les mots de passes ne correspondent pas !</p>';
+         }else{
+            $insert_user_pseudo = mysqli_query($db_handle, $sqlsign_in);
+            if($insert_user_pseudo){
+               echo '<div class="message_reussi"> Inscription réussie ! </div>';
+            }
          }
-      }
+      } 
+   }
 
-    
 ?>
+       </form>
+         </article>
+      </div>
+      <!-- card.// -->
+      </aside> <!-- col.// -->
+      </div> <!-- row.// -->
+      </div> 
+      <!--container end.//-->
+
+
+   </body>
 
 </html>

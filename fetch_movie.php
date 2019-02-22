@@ -2,6 +2,7 @@
 $connect = mysqli_connect("localhost", "root", "root", "Cinefa");
 mysqli_set_charset($connect, "utf8");
 
+
 if(isset($_POST["query"]))
 {
 	$movie_maj = ucfirst($_POST["query"]);

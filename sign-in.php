@@ -22,7 +22,7 @@
                      <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                      </div>
-                     <input name="user_id" class="form-control" placeholder="Email ou pseudo" type="email">
+                     <input name="user_id" class="form-control" placeholder="Email ou pseudo" type="text" required>
                   </div>
                </div>
                <div class="form-group">
@@ -30,7 +30,7 @@
                      <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                      </div>
-                     <input class="form-control" placeholder="******" type="password" name='password'>
+                     <input class="form-control" placeholder="******" type="password" name='password' required>
                   </div>
                </div>
                <div class="form-group">
@@ -44,21 +44,34 @@
       </div> 
       </div> 
    </body>
-   <?php
-  
-  if(isset($_POST['submit'])){
+
+<?php
+
+require 'connectmysql.php';
+
+if(isset($_POST) && !empty($_POST['user_id']) && !empty($_POST['password'])) {
+   extract($_POST);
+   // on recupère le password de la table qui correspond au login du visiteur
+   $sql = "SELECT `password` FROM Users WHERE pseudo='".$user_id."' OR mail='".$user_id."'";
+   $select_password = mysql_query($dbhandle, $sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+ 
+   $data = mysql_fetch_assoc($select_password);
+ 
+   if($data['password'] = $password) {
+     session_start();
+     //$_SESSION['user_id'] = $user_id;
+     
+     echo '
+     <script LANGUAGE="JavaScript">
+      document.location.href="my-account.php" 
+     </script>'; 
+   }else{
+      echo "mauvais login";
+   }
+
+ }
+ 
+?>
 
 
-    if(!empty($user_id) && !empty($password)){
-      include 'connectmysql.php';
-
-
-      
-    };
-
-
-  }
-  
-  
-  ?>
 </html>
