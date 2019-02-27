@@ -32,7 +32,7 @@ echo '
     <h4 class="card-title">' . $actor["name"] .'</h4>
     </div>
     <div class="card-footer">
-      <a href="actor_detail.php?idOfActor='. $actor['id_actor'] .'" class="btn btn-primary">En savoir plus</a>
+      <a href="actor_detail.php?idOfActor='. $actor['id_actor'] .'" class="btn btn-warning">En savoir plus</a>
     </div>
   </div>
 </div>
@@ -41,6 +41,6 @@ echo '
 }
 else
 {
- echo '<div> Aucun film trouvé pour "'. $_POST["query"] .'" <div>';
+ echo '<div> Aucun acteur trouvé pour "'. $_POST["query"] .'" <div>';
 }
 ?>

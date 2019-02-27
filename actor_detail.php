@@ -2,21 +2,12 @@
 <html lang="fr">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Cinefa</title>
-
+  <link rel="icon" href="./assets/Cinefa-logo-black.png" />
   <link rel="stylesheet" href="./css/style.css">
   <!-- Bootstrap CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Bootstrap /JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
@@ -25,7 +16,7 @@
   <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#"><img src="./assets/CINEFA-logo.png" width="120px"></a>
+        <a class="navbar-brand" href="index.php"><img src="./assets/CINEFA-logo.png" width="120px"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,16 +26,17 @@
               <a class="nav-link" href="index.php">Films</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">Acteurs</a>
+              <a class="nav-link" href="actors.php">Acteurs</a>
               <span class="sr-only">(current)</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Réalisateurs</a>
+              <a class="nav-link" href="directors.php">Réalisateurs</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="my-account.php">Mon Compte
               </a>
             </li>
+            <?php require 'cinession.php'; ?>
           </ul>
         </div>
       </div>
@@ -76,7 +68,7 @@ if(isset($_GET['idOfActor'])){
   FROM `Plays_in` 
   INNER JOIN `Movies` ON `Plays_in`.`#id_movie` = `Movies`.`id_movie` 
   INNER JOIN `Actors` ON `Plays_in`.`#id_actor` = `Actors`.`id_actor` 
-  WHERE id_actor ='. $actor_id;
+  WHERE id_actor ='. $actor_id .' ORDER BY `release_date` DESC LIMIT  3';
 
 
   $select_actor_id = mysqli_query($db_handle, $sql_actor_detail);
@@ -104,6 +96,8 @@ if(isset($_GET['idOfActor'])){
   echo '</p>';
   echo '</div>';
 }
+
+echo "<title>".$actor['name']."</title>"
   
 ?>
 

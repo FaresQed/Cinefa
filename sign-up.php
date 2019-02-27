@@ -9,25 +9,26 @@
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+      <link rel="icon" href="./assets/Cinefa-logo-black.png" />
    <body>
       <div class="container">
       <div class="card">
          <article class="card-body">
             <h4 class="card-title text-center mb-4 mt-1">S'enregistrer</h4>
             <hr>
-            <form method="post" action="">
+            <form method="post" action="sign-up.php">
                <div class="form-group">
                   <div class="input-group">
                      <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                      </div>
-                     <input name="user_id" class="form-control" placeholder="Pseudo" type="text" required>
+                     <input name="pseudo" class="form-control" placeholder="Pseudo" type="text" required>
                   </div>
                </div>
                <div class="form-group">
                   <div class="input-group">
                      <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        <span class="input-group-text"><i class="fa fa-envelope"></i> </span>
                      </div>
                      <input name="mail" class="form-control" placeholder="Email" type="text" required>
                   </div>
@@ -65,9 +66,10 @@
                   </div>
                </div>
                <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-block" name="submit"> Se connecter  </button>
+                  <button type="submit" class="btn btn-primary btn-block" name="submit"> S'enregistrer  </button>
+                  <a class="btn btn-danger btn-block" href="index.php"> Annuler  </a>
                </div>
-               <p class="text-center"><a href="#" class="btn">Mot de passe oublié ?</a></p>
+               <p class="text-center"><a href="./sign-in.php" class="btn">Deja un compte ?</a></p>
 
 <?php
   
@@ -76,23 +78,41 @@
 
   if(isset($_POST['submit'])){
 
-   $user_id = $_POST['user_id'];
+   $pseudo = $_POST['pseudo'];
    $mail = $_POST['mail'];
-   $address = $_POST['address'];
+
+   $address = str_replace("'", " ", $_POST['address']);
    $phone= $_POST['phone'];
    $password = $_POST['password'];
    $passwordconf = $_POST['passwordconf'];
 
-   $sqlsign_in = "INSERT INTO Users (`pseudo`,`address`, `mail`, `phone`, `password`) VALUES ('" . $user_id . "' , '" . $mail . "' , '" . $address . "' , '" . $phone . "' , '" . $password . "')";
+   $sqlsign_in = "INSERT INTO Users (`pseudo`,`address`, `mail`, `phone`, `password`) VALUES ('" . $pseudo . "' , '" . $mail . "' , '" . $address . "' , '" . $phone . "' , '" . $password . "')";
 
-      if(isset($user_id) || isset($mail) || isset($addresse) || isset($phone) || isset($password) || isset($passwordconf)){
+      if(isset($pseudo) || isset($mail) || isset($addresse) || isset($phone) || isset($password) || isset($passwordconf)){
          if(($passwordconf) != ($password)){
-            echo '<p class="text-center danger">les mots de passes ne correspondent pas !</p>';
+            echo '<p class="text-center text-danger">les mots de passes ne correspondent pas !</p>';
          }else{
             $insert_user_pseudo = mysqli_query($db_handle, $sqlsign_in);
+
+            echo '<div class="message_reussi text-success"> Inscription réussie ! </div>';
+
             if($insert_user_pseudo){
-               echo '<div class="message_reussi"> Inscription réussie ! </div>';
-            }
+               
+            session_start();
+               $_SESSION['pseudo'] = $pseudo;
+               $_SESSION['address'] = $address;
+               $_SESSION['mail'] = $mail;
+               $_SESSION['phone'] = $phone;
+         
+                        echo '
+               <script LANGUAGE="JavaScript">
+                document.location.href="my-account.php" 
+               </script>
+               '; 
+               }
+
+
+                     
          }
       } 
    }

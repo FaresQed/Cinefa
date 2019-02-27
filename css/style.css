@@ -8,27 +8,25 @@ body{
     padding-top: 5vh;
 }
 
-ul{
-}
-
-* {
-}
-
-body, html {
-}
-
-.search-bar {
-}
-
-input {
-}
 
 ul#wrapper {
     list-style: none;
 }
 
-li {
-}
 
-a {
+a > .playlist-title:link{
+    color: black;
+    text-decoration: none;
+}
+a > .playlist-title:visited{
+    color: black;
+    text-decoration: none;
+}
+a > .playlist-title:hover{
+    color: black;
+    text-decoration: none;
+}
+a > .playlist-title:active{
+    color: black;
+    text-decoration: none;
 }

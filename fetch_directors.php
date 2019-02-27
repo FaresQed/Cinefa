@@ -27,12 +27,12 @@ if(mysqli_num_rows($result) > 0)
 		echo '
 		<div class="col-lg-3 col-md-6 mb-4">
 		<div class="card h-100">
-		<img class="card-img-top portrait" src="' . $director['portrait'] . '" height="200px" alt="">
+		<img class="card-img-top portrait" src="' . $director['portrait'] . '" height="275px" alt="">
 		  <div class="card-body">
 		  <h4 class="card-title">' . $director["name"] .'</h4>
 		  </div>
 		  <div class="card-footer">
-			<a href="director_detail.php?idOfdirector='. $director['id_director'] .'" class="btn btn-primary">En savoir plus</a>
+			<a href="director_detail.php?idOfdirector='. $director['id_director'] .'" class="btn btn-warning">En savoir plus</a>
 		  </div>
 		</div>
 	  </div>
@@ -41,6 +41,6 @@ if(mysqli_num_rows($result) > 0)
 }
 else
 {
- echo '<div> Aucun film trouvé pour "'. $_POST["query"] .'" <div>';
+ echo '<div> Aucun réalisateur trouvé pour "'. $_POST["query"] .'" <div>';
 }
 ?>

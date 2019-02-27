@@ -2,8 +2,10 @@ $(document).ready(function(){
 	load_data_movie();
 	load_data_actors();
 	load_data_directors();
+	load_data_playlists();
+	load_data_ratedMovies();
 
-	// Movie
+///////////// Movie
 	function load_data_movie(query)
 	{
 		$.ajax({
@@ -28,9 +30,34 @@ $(document).ready(function(){
 		}
 	});
 
+	 ///////////// Rated Movies
+	function load_data_ratedMovies(query)
+	{
+		$.ajax({
+			url:"fetch_ratedMovies.php",
+			method:"post",
+			data:{query:query},
+			success:function(data)
+			{
+				$('#ratedMovies').html(data);
+			}
+		});
+	}
+	$('#search_ratedMovie').keyup(function(){
+		var search = $(this).val();
+		if(search != '')
+		{
+			load_data_movie(search);
+		}
+		else
+		{
+			load_data_movie();			
+		}
+	});
 
 
-////////Actor
+
+//////////////Actor
 	function load_data_actors(query)
 	{
 		$.ajax({
@@ -55,9 +82,7 @@ $(document).ready(function(){
 		}
 	});
 
-////////////
-
-		//Director
+//////////////Director
 	function load_data_directors(query)
 	{
 		$.ajax({
@@ -82,4 +107,32 @@ $(document).ready(function(){
 			load_data_directors();			
 		}
 	});
+
+
+/////////////Playlists
+		function load_data_playlists(query)
+		{
+			$.ajax({
+				url:"fetch_playlists.php",
+				method:"post",
+				data:{query:query},
+				success:function(data)
+				{
+					$('#playlist').html(data);
+				}
+			});
+		}
+		
+		$('#search_playlist').keyup(function(){
+			var search = $(this).val();
+			if(search != '')
+			{
+				load_data_playlists(search);
+			}
+			else
+			{
+				load_data_playlists();			
+			}
+		});
+
 });

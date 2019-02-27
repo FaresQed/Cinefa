@@ -2,22 +2,15 @@
 <html lang="fr">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Cinefa</title>
-
+  <link rel="icon" href="./assets/Cinefa-logo-black.png" />
+  <title>Cinefa : Réalisateurs</title>
   <link rel="stylesheet" href="./css/style.css">
   <!-- Bootstrap CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Bootstrap /JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </head>
 
 <body>
@@ -41,10 +34,7 @@
               <a class="nav-link" href="directors.php">Réalisateurs</a>
               <span class="sr-only">(current)</span>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="my-account.php">Mon Compte
-              </a>
-            </li>
+            <?php require 'cinession.php'; ?>
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" name="search_director" id="search_director" placeholder="Chercher un Réalisateur">
@@ -53,13 +43,13 @@
       </div>
     </nav>
 
-  <div class="container">
-
-    <header class="jumbotron my-4">
+    <header class="jumbotron my-4 ">
     </header>
 
     <!-- BODY -->
-    <div class="row text-center" id="director"></div>
+    <div class="container">
+      <div class="row text-center" id="director"></div>
+    </div>
 
   <!-- Footer -->
   <footer class="py-5 bg-light">
