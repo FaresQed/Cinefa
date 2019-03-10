@@ -39,11 +39,12 @@ if(isset($_GET['search_ratedMovie'])){
                   <?php 
                   require 'connectmysql.php';
                   require 'cinession.php'; 
-                  
-                  $addMovie = $_GET['idOfMovie'];
-                  $toPlaylist = $_GET['idOfplaylist'];
 
-                  if(isset($addMovie) && isset($toPlaylist)){
+                  if(isset($_GET['idOfMovie']) && isset($_GET['idOfplaylist'])){
+                     
+                     $addMovie = $_GET['idOfMovie'];
+                     $toPlaylist = $_GET['idOfplaylist'];
+                     
                      $sql_movie_to_playlist = "INSERT INTO `movies_playlist`(`movie_id`, `playlist_id`) VALUES ($addMovie, $toPlaylist)";
 
                      $insert_movie_to_playlist = mysqli_query($db_handle, $sql_movie_to_playlist);
